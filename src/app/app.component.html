@@ -1,39 +1,31 @@
-<hello name="{{ name }}"></hello>
-<div *ngIf="getCurrentPrice()">
-  <hr />
-  <div>
-    <input type="button" value="Atualizar" (click)="update()" />
-    <span
-      >Atualizado em {{ this.bitcoinService.lastUpdate | date: 'full' }}</span
+<div class="menu" class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <h2 id="h2">Beatriz Castro - 0050831811004</h2>
+  <p class="timer">
+    <span *ngIf="timer.getCountMinutos() > 0"
+      >{{ timer.getCountMinutos() }}m</span
     >
+    {{ timer.getCountSegundos() }}s
+  </p>
+</div>
+<div class="container-fluid div-conteiner">
+  <div>
+    <h2>BitCoin$</h2>
 
-    <h1>{{ counter }}</h1>
+    <table>
+      <tr>
+        <th>Data/Hora</th>
+        <th>Real (BRL)</th>
+        <th>Dólar (USD)</th>
+      </tr>
+      <tr *ngFor="let response of BitcoinService.updateList">
+        <td>{{ response.time.updated }}</td>
+        <td>
+          {{ response.bpi.BRL.rate }}
+        </td>
+        <td>
+          {{ response.bpi.USD.rate }}
+        </td>
+      </tr>
+    </table>
   </div>
-  <hr />
-  <h2>Data/hora</h2>
-  <div>{{ this.getCurrentPrice().time.updated }}</div>
-  <h2>Taxas</h2>
-  <h3>{{ this.getCurrentPrice().bpi.USD.description }}</h3>
-  <h4>
-    <span [innerHTML]="this.getCurrentPrice().bpi.USD.symbol"></span>
-    {{ this.getCurrentPrice().bpi.USD.rate }}
-  </h4>
-  <h3>{{ this.getCurrentPrice().bpi.BRL.description }}</h3>
-  <h4>
-    <span [innerHTML]="this.getCurrentPrice().bpi.BRL.symbol"></span>
-    {{ this.getCurrentPrice().bpi.BRL.rate }}
-  </h4>
-  <hr />
-  <table border="1">
-    <tr>
-      <th>Data/hora</th>
-      <th>USD</th>
-      <th>BRL</th>
-    </tr>
-    <tr *ngFor="let price of this.bitcoinService.updateList">
-      <td>{{ price.timestamp | date: 'full' }}</td>
-      <td>{{ price.USD | currency }}</td>
-      <td>{{ price.BRL | currency }}</td>
-    </tr>
-  </table>
 </div>
