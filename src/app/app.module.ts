@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
-import { HttpClientModule } from '@angular/common/http';
 import { BitcoinService } from './bitcoin.service';
+import { TimerService } from './timer.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpClientModule ],
   declarations: [ AppComponent, HelloComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [BitcoinService]
+  providers: [BitcoinService, TimerService]
 })
 export class AppModule { }

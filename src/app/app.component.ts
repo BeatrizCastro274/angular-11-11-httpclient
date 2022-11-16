@@ -1,33 +1,19 @@
-import { Component, VERSION } from '@angular/core';
-import { BitcoinService } from './bitcoin.service';
+import { Component, VERSION } from "@angular/core";
+import { BitcoinService } from "./bitcoin.service";
+import { TimerService } from "./timer.service";
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: "my-app",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  name = 'Beatriz Castro RA: 50831811004';
-
-  counter = 0;
-  timer = setInterval(() => {
-    this.counter = this.counter + 1;
-  }, 100);
-
-  constructor(public bitcoinService: BitcoinService) {}
-
-  ngOnInit() {
-    this.update();
+  constructor(
+    public BitcoinService: BitcoinService,
+    public timer: TimerService
+  ) {
+    this.timer.start();
   }
 
-  getCurrentPrice() {
-    return this.bitcoinService.currentPrice;
-  }
-
-  update() {
-    this.bitcoinService.update();
-    if (this.bitcoinService.currentPrice === this.bitcoinService.currentPrice) {
-      this.bitcoinService.update();
-    }
-  }
+  ngOnInit() {}
 }
